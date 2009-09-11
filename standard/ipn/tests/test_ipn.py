@@ -109,6 +109,7 @@ class IPNTest(TestCase):
         self.client.post("/ipn/", IPN_POST_PARAMS)
         self.client.post("/ipn/", IPN_POST_PARAMS)
         self.assertEqual(len(PayPalIPN.objects.all()), 2)
-        ipn_obj = PayPalIPN.objects.order_by('-created_at')[1]
+        ipn_obj = PayPalIPN.objects.order_by('-id')[0]
         self.assertEqual(ipn_obj.flag, True)
         self.assertEqual(ipn_obj.flag_info, "Duplicate txn_id. (51403485VH153354B)")
+
